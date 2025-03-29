@@ -15,7 +15,10 @@ Build a simple laravel development environment with docker-compose.
 $ git clone git@github.com:ucan-lab/docker-laravel.git
 $ cd docker-laravel
 $ make create-project # Install the latest Laravel project
-$ make install-recommend-packages # Not required
+# $ make install-recommend-packages # Not required
+$ docker-compose exec app composer require 'laravel/breeze:^1.4' --dev
+$ docker-compose exec app php artisan breeze:install
+$ docker-compose exec web npm install
 ```
 
 http://localhost
