@@ -28,6 +28,18 @@ $ docker-compose exec web npm install
  $ docker-compose exec web apk add --no-cache nodejs npm
 # 1.5.5
 $ docker-compose exec web npm run dev
+# 2.3.4
+$ TFENV_ARCH=amd64 tfenv install 1.0.0
+# 2.3.5
+$ tfenv list
+# 2.3.6
+$ tfenv use 1.0.0
+$ terraform --version
+# 2.4.4
+$ export AWS_PROFILE=terraform
+$ aws configure list
+$ cat ~/.aws/credentials
+
 ```
 
 http://localhost
