@@ -12,13 +12,22 @@ Build a simple laravel development environment with docker-compose.
 ## Usage
 
 ```bash
-$ git clone git@github.com:ucan-lab/docker-laravel.git
-$ cd docker-laravel
-$ make create-project # Install the latest Laravel project
-# $ make install-recommend-packages # Not required
+$ git clone git@github.com:kayamak/laravel-fargate-app.git
+$ cd laravel-fargate-app
+$ make create-project
+# 1.5.1 
 $ docker-compose exec app composer require 'laravel/breeze:^1.4' --dev
+# 1.5.2
 $ docker-compose exec app php artisan breeze:install
+# 1.5.3
 $ docker-compose exec web npm install
+ # node を完全に削除
+ $ docker-compose exec web apk del nodejs npm
+ $ docker-compose exec web rm -rf /usr/local/bin/node /usr/local/lib/node_modules /usr/local/include/node /usr/local/share/man/man1/node.1
+ # Alpine Linux (musl) 用の node を再インストール
+ $ docker-compose exec web apk add --no-cache nodejs npm
+# 1.5.5
+$ docker-compose exec web npm run dev
 ```
 
 http://localhost
