@@ -5,3 +5,8 @@
 .env
 
 backend/
+
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+*.tfvars
