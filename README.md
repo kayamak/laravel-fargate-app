@@ -1,3 +1,6 @@
+This is a hands-on, temporary release.
+こちらはハンズオンで一時的に公開しています。
+
 # docker-laravel 🐳
 
 ![License](https://img.shields.io/github/license/ucan-lab/docker-laravel?color=f05340)
