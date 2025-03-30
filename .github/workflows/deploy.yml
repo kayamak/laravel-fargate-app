@@ -108,6 +108,10 @@ jobs:
       
       - uses: aws-actions/amazon-ecr-login@v1
         id: amazon-ecr-login
+        
+      # IMAGE_TAG環境変数の設定
+      - name: Set IMAGE_TAG environment variable
+        run: echo "IMAGE_TAG=${SYSTEM_TAG}" >> $GITHUB_ENV
 
       - name: Push nginx image to ecr
         env:
@@ -116,12 +120,12 @@ jobs:
           ECR_REPOSITORY: ${{ env.SYSTEM_NAME }}-${{ env.ENV_NAME }}-${{ env.SERVICE_NAME }}-nginx
         run: |
           docker build \
-            --cache-from $ECR_REGISTRY/$ECR_REPOSITORY:latest --build-arg BUILDKIT_INLINE_CACHE=1 . \
+            --cache-from $ECR_REGISTRY/$ECR_REPOSITORY:latest --build-arg BUILDKIT_INLINE_CACHE=1 \
             -f infra/docker/nginx/Dockerfile \
             -t $ECR_REGISTRY/$ECR_REPOSITORY:latest \
-            -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-            docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
-            docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+            -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
       
       - name: Push php image to ecr
         env:
@@ -130,9 +134,9 @@ jobs:
           ECR_REPOSITORY: ${{ env.SYSTEM_NAME }}-${{ env.ENV_NAME }}-${{ env.SERVICE_NAME }}-php
         run: |
           docker build \
-            --cache-from $ECR_REGISTRY/$ECR_REPOSITORY:latest --build-arg BUILDKIT_INLINE_CACHE=1 . \
+            --cache-from $ECR_REGISTRY/$ECR_REPOSITORY:latest --build-arg BUILDKIT_INLINE_CACHE=1 \
             -f infra/docker/php/Dockerfile \
             -t $ECR_REGISTRY/$ECR_REPOSITORY:latest \
-            -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-            docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
-            docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+            -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
