@@ -8,5 +8,5 @@ env:
 
 jobs:
   deploy:
-    name: Deploy app to AWS Fargate
+    name: Deploy app to AWS Fragate
     runs-on: ubuntu-latest
