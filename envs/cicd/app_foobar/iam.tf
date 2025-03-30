@@ -18,7 +18,7 @@ resource "aws_iam_role" "developer" {
             "sts:TagSession"
           ]
           "Principal": {
-            "AWS": "aws_iam_user.github.arn"
+            "AWS": "${aws_iam_user.github.arn}"
           },
         }
       ]
