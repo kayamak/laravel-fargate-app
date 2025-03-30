@@ -28,6 +28,12 @@ jobs:
         run: echo "ENV_NAME=prod" >> $GITHUB_ENV
       - uses: actions/checkout@v2
 
+      # backend/publicディレクトリを作成
+      - name: Create required directories
+        run: |
+          mkdir -p backend/public
+          touch backend/public/.gitkeep
+
       # Docker Composeをインストール
       - name: Install Docker Compose
         run: |
