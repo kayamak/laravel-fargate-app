@@ -7,7 +7,7 @@ resource "aws_iam_user" "github" {
 
 resource "aws_iam_role" "developer" {
   name = "${local.name_prefix}-${local.service_name}-developer"
-  assume_role_policy = jsondecode(
+  assume_role_policy = jsonencode(
     {
       "Version": "2012-10-17",
       "Statement": [
