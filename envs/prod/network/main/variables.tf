@@ -5,16 +5,16 @@ variable "vpc_cidr" {
 
 variable "azs" {
   type = map(object({
-    public_cidr = string
+    public_cidr  = string
     private_cidr = string
   }))
   default = {
     a = {
-      public_cidr = "172.31.0.0/20"
+      public_cidr  = "172.31.0.0/20"
       private_cidr = "172.31.48.0/20"
     }
     c = {
-      public_cidr = "172.31.16.0/20"
+      public_cidr  = "172.31.16.0/20"
       private_cidr = "172.31.64.0/20"
     }
   }
