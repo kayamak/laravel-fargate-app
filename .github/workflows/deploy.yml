@@ -32,7 +32,7 @@ jobs:
 
       - name: Cache composer
         id: cache-composer
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: backend/vendor
           key: composer-v1-#{{ hashFiles('backend/composer.lock') }}
@@ -42,7 +42,7 @@ jobs:
 
       - name: Cache npm
         id: cache-npm-ci
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: backend/node_modules
           key: npm-v1-#{{ hashFiles('backend/package-lock.json') }}
